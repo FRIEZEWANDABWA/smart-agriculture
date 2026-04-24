@@ -16,6 +16,15 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 
+## Official Git repository (use this in Colab)
+
+**Your project remote is:** [https://github.com/FRIEZEWANDABWA/smart-agriculture](https://github.com/FRIEZEWANDABWA/smart-agriculture)  
+(`git clone https://github.com/FRIEZEWANDABWA/smart-agriculture.git`)
+
+Do **not** point notebooks or `YOUR_REPO_URL` at third-party template URLs (for example other users’ `maize-disease-msc` repos). Those are not your code and will confuse `git pull` and your file layout.
+
+**Google Colab (minimal flow):** mount Drive if you keep the repo on Drive → `cd` into `maize_disease_msc` → `pip install -r requirements.txt` → run the pipeline cells. Prefer a **fresh clone** of the URL above into an empty folder if Drive files were mixed with a broken `.venv` (site-packages scattered next to `src`).
+
 ## Data layout (PlantVillage maize classes)
 
 Put images under `data\raw\plantvillage\<ClassName>\*.jpg` (one folder per class), for example:
