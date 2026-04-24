@@ -1,0 +1,16 @@
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.idea/
+.vscode/
+data/raw/
+data/processed/
+data/interim/
+artifacts/
+*.h5
+*.keras
+*.zip
+.DS_Store

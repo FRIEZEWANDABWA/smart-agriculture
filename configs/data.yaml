@@ -1,0 +1,24 @@
+# Point `raw_root` to your PlantVillage maize class folders, e.g.:
+# data/raw/plantvillage/Common_Rust/
+# Each subfolder name = class label.
+
+raw_root: "../data/raw/plantvillage"
+interim_root: "../data/interim"
+processed_root: "../data/processed/preprocessed_224"
+
+split:
+  train: 0.70
+  val: 0.15
+  test: 0.15
+  random_seed: 42
+
+image:
+  size: 224
+
+preprocess:
+  gaussian_ksize: 3
+  gaussian_sigma: 0
+  clahe_clip: 2.0
+  clahe_grid: 8
+  hsv_lower: [25, 40, 40]
+  hsv_upper: [90, 255, 255]
