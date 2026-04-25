@@ -25,6 +25,8 @@ Do **not** point notebooks or `YOUR_REPO_URL` at third-party template URLs (for 
 
 **Google Colab (minimal flow):** mount Drive if you keep the repo on Drive → `cd` into `maize_disease_msc` → `pip install -r requirements.txt` → run the pipeline cells. Prefer a **fresh clone** of the URL above into an empty folder if Drive files were mixed with a broken `.venv` (site-packages scattered next to `src`).
 
+**Clean Colab notebook (recommended):** [`notebooks/Colab_Maize_Pipeline_Clean.ipynb`](notebooks/Colab_Maize_Pipeline_Clean.ipynb) — short pipeline, correct `RAW_ROOT` (`…/data`), `./artifacts/checkpoints`, and your Drive paths (`final masters project` first). Upload it to Colab or open from Drive after syncing the repo.
+
 ## Data layout (PlantVillage maize classes)
 
 Put images under `data\raw\plantvillage\<ClassName>\*.jpg` (one folder per class), for example:
