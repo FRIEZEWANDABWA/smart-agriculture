@@ -147,6 +147,20 @@ For **raw** test evaluation, point `--test-dir` to `.\data\processed\for_keras_r
 - `configs\data.yaml` — preprocessing parameters (HSV range, CLAHE, blur).
 - `configs\train.yaml` — batch size, epochs, learning rate, early stopping.
 
+## Colab, GPU time, and workflow (read before long runs)
+
+Guidelines to save quota, avoid retraining, and keep the project efficient:
+
+1. **Do not retrain if the weights already exist** — This repo’s training already writes **`artifacts\checkpoints\<experiment>\best_model.keras`** (best val loss) and **`final_model.keras`**. For evaluation, use `src.eval.evaluate` with that path; do **not** start a full training run again. If you need an extra on-disk copy, you can load the Keras 3 model and save under another name, e.g. `model.save("my_backup.keras")` (or `.h5` if you standardise on that format in your environment).
+
+2. **Short “smoke” runs before long runs** — Temporarily set **`epochs`** to something small (e.g. **5**) in `configs\train.yaml` to confirm the pipeline, then restore **40** (or your target) for the real thesis run. This saves GPU and catches errors early.
+
+3. **Stop idle GPU in Colab** — **Runtime → Disconnect and delete runtime** (or at least disconnect) when you are not training; a connected GPU session still eats quota if left open.
+
+4. **Heavy preprocessing on your own machine when possible** — Phases 8–9 (precompute and raw materialize) are I/O- and CPU-heavy. Running them on Windows with a synced Drive copy, then using Colab only for **training and evaluation**, reduces Colab time.
+
+5. **Checkpoints are already on** — Training uses **`ModelCheckpoint`** (best) and **`CSVLogger`** (`training_log.csv`). You can resume *logic* in your own code if you extend the trainer; the default script trains one continuous run with early stopping.
+
 ## Next implementation pieces (tell me which you want first)
 
 - **Synthetic corruption** suite + robustness evaluation tables.

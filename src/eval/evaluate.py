@@ -52,10 +52,21 @@ def main() -> None:
     y_true = np.concatenate(y_true)
     y_pred = np.concatenate(y_pred)
 
+    cm = confusion_matrix(y_true, y_pred)
+    cr = classification_report(y_true, y_pred, target_names=class_names, digits=4)
+
     print("Confusion matrix (rows=true, cols=pred):")
-    print(confusion_matrix(y_true, y_pred))
+    print(cm)
     print()
-    print(classification_report(y_true, y_pred, target_names=class_names, digits=4))
+    print(cr)
+
+    report_path = args.model.parent / "eval_report.txt"
+    with open(report_path, "w", encoding="utf-8") as f:
+        f.write("Confusion matrix (rows=true, cols=pred):\n")
+        f.write(f"{cm}\n\n")
+        f.write(cr)
+        f.write("\n")
+    print(f"\nEvaluation report saved to {report_path}")
 
 
 if __name__ == "__main__":
